@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <title>Leaning New Vocabularies From Articles</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col form-group">
+                <form action="{{url_for('show')}}" method="post">
+                    <h3>Paste Article Here:</h3><br>
+                    <textarea class="form-control" name="article" rows="30" >{{article}}</textarea>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Find Uncommon Words</button>
+                </form>
+            </div>
+            <div class="col">
+                <form action="{{url_for('add_known_words')}}" method="post">
+                    <h3>New Words:</h3><br>
+                    <table class="table" style="text-align: center;">
+                        {% for row, words in table.items() %}
+                        <tr>
+                            {% for word in words %}
+                            <td>
+                                <div class="form-group">
+                                    <input type="checkbox" class="form-control" id="{{word}}"
+                                           name="words" value="{{word}}">
+                                    <label for="{{word}}">{{word}}</label>
+                                </div>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <button type="submit" class="btn btn-primary">Add To Words List</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+</body>
+</html>
